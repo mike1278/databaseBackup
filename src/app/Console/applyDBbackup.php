@@ -4,11 +4,10 @@ namespace kenwood\DBbackup\Console;
 
 use Illuminate\Console\Command;
 use kenwood\DBbackup\Traits\DBMethodsConsole;
-use kenwood\DBbackup\Traits\Verify;
 
-class applyDBbackup extends Command
+class applyDBbackup extends VerifyConfigCommand
 {
-    use DBMethodsConsole,Verify;
+    use DBMethodsConsole;
     /**
      * The name and signature of the console command.
      *

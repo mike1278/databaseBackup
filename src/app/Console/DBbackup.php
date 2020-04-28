@@ -2,17 +2,16 @@
 
 namespace kenwood\DBbackup\Console;
 
-use kenwood\DBbackup\Mail\sendBackupSql;
 use Illuminate\Console\Command;
+use kenwood\DBbackup\Mail\sendBackupSql;
 use kenwood\DBbackup\Traits\DBMethodsConsole;
-use kenwood\DBbackup\Traits\Verify;
 
-class DBbackup extends Command
+class DBbackup extends VerifyConfigCommand
 {
-    use DBMethodsConsole,Verify;
+    use DBMethodsConsole;
 
     protected $signature = 'db:backup {--send}';
-    protected $description = 'Creacion de backup de la base de datos';
+    protected $description = 'Database backup creation';
 
     public function __construct()
     {
@@ -27,7 +26,7 @@ class DBbackup extends Command
             $this->error('No se suporta '.$DB);
             return;
         }
-        exec($this->$DB().' '.env('DB_DATABASE').' > '.config('DatabaseBackup.ubication_file').'/'.config('DatabaseBackup.name_file'));
+        exec($this->$DB().' '.env('DB_DATABASE').' > '.config('DatabaseBackup.db_backup_path').'/'.config('DatabaseBackup.name_file'));
         $this->info('Backup done correctly');
         if($this->option('send')){
             $this->call('db:sendBackup');
