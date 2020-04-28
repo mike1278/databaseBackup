@@ -1,0 +1,30 @@
+{
+    "name": "kenwood/dbbackup",
+    "description": "package to create database backup and send to email",
+    "keywords": ["kenwood", "database", "DB", "backup", "laravel", "DBbackup","mysql","postgresql"],
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Roberto Micheletti",
+            "email": "michelettiroberto7@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "kenwood\\DBbackup\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "kenwood\\DBbackup\\DatabaseBackupServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
